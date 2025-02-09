@@ -1,12 +1,7 @@
+#include "pvp.h"
 
-#include <stdio.h>
-
-int main() {
-
-	int a, b;
-	scanf("%d %d", &a, &b);
-	printf("%d\n", a+b);
-	return 0;
-
+int add(int a, int b) {
+    int c = provide_random_number();
+	return a+b+c;
 }
 

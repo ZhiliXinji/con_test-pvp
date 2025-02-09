@@ -1,12 +1,8 @@
-import java.util.Scanner;
+public class communicationtwoways {
 
-public class batch {
-    public static void main(String args[]) {
-        Scanner in = new Scanner(System.in);
-        int a, b;
-        a = in.nextInt();
-        b = in.nextInt();
-        System.out.println(a + b);
-   }
+    public static int add(int a, int b) throws Exception {
+        int c = stub.provide_random_number();
+        return a + b + c;
+    }
+
 }
-
