@@ -5,4 +5,4 @@ memory_limit: 256
 n_input: 10
 public_testcases: 0, 1, 2, 3, 4
 pvp: True
-token_mode: infinite
+token_mode: disabled
