@@ -28,6 +28,11 @@ int main(int argc, char **argv) {
 	fscanf(fin, "%d %d", &a, &b);
 	fprintf(fifo1_in, "%d %d\n", a, b);
 	fflush(fifo1_in);
+	fprintf(fifo2_in, "%d %d\n", a, b);
+	fflush(fifo2_in);
+
+	double sc1, sc2;
+
     while (true) {
       fscanf(fifo1_out, "%d", &res);
       if (res < 0) {
@@ -39,19 +44,28 @@ int main(int argc, char **argv) {
         break;
       }
     }
+	sc1 = (res == a + b + c) ? 1.0 : 0.0;
 
-	if (a+b+c == res) {
-		fprintf(stderr, "A-ha, you're the best adding program I've ever met!\n");
-		printf("1.0 0.0\n");
-	} else {
-		fprintf(stderr, "How dreadful, never met anyone as dumb as you...\n");
-		printf("0.0 1.0\n");
+	while (true) {
+		fscanf(fifo2_out, "%d", &res);
+		if (res < 0) {
+		  fprintf(fifo2_in, "%d\n", c);
+		  fflush(fifo2_in);
+		} else {
+		  fprintf(fout, "%d\n", res);
+		  fflush(fout);
+		  break;
+		}
 	}
+	sc2 = (res == a + b + c) ? 1.0 : 0.0;
+
+	printf("%.2lf %.2lf\n", sc1, sc2);
 
 	fclose(fin);
 	fclose(fout);
 	fclose(fifo1_in);
 	fclose(fifo1_out);
-
+	fclose(fifo2_in);
+	fclose(fifo2_out);
 }
 
