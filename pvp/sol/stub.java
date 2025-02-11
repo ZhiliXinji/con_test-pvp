@@ -14,8 +14,8 @@ public class stub {
     }
 
     public static void main(String[] args) throws Exception {
-        FileInputStream in = new FileInputStream(args[1]);
-        FileOutputStream out = new FileOutputStream(args[0]);
+        FileInputStream in = new FileInputStream(args[0]);
+        FileOutputStream out = new FileOutputStream(args[1]);
 
         writer = new PrintWriter(out, true);
         br = new BufferedReader(new InputStreamReader(in));

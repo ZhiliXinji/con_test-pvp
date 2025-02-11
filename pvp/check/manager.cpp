@@ -17,10 +17,10 @@ int main(int argc, char **argv) {
 
 	fin = fopen("input.txt", "r");
 	fout = fopen("output.txt", "w");
-	fifo1_in = fopen(argv[1], "w");
-	fifo1_out = fopen(argv[2], "r");
-	fifo2_in = fopen(argv[3], "w");
-	fifo2_out = fopen(argv[4], "r");
+	fifo1_in = fopen(argv[2], "w");
+	fifo1_out = fopen(argv[1], "r");
+	fifo2_in = fopen(argv[4], "w");
+	fifo2_out = fopen(argv[3], "r");
 
 	int a, b, res;
     int c = provide_random_number();

@@ -19,8 +19,8 @@ int provide_random_number() {
 
 int main(int argc, char **argv) {
 
-	fifo_in = fopen(argv[2], "r");
-	fifo_out = fopen(argv[1], "w");
+	fifo_in = fopen(argv[1], "r");
+	fifo_out = fopen(argv[2], "w");
 
 	int a, b;
 	assert(fscanf(fifo_in, "%d %d", &a, &b) == 2);
