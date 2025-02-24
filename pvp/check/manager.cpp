@@ -2,6 +2,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <signal.h>
+#include <errno.h>
 
 using namespace std;
 
@@ -33,31 +34,48 @@ int main(int argc, char **argv) {
 
     double sc1, sc2;
 
+    bool fail = false;
+
     while (true) {
-      fscanf(fifo1_out, "%d", &res);
+      if(fscanf(fifo1_out, "%d", &res) == 0){
+        fail = true;
+        break;
+      }
       if (res < 0) {
         fprintf(fifo1_in, "%d\n", c);
         fflush(fifo1_in);
+        if(errno == EPIPE){
+          fail = true;
+          break;
+        }
       } else {
         fprintf(fout, "%d\n", res);
         fflush(fout);
         break;
       }
     }
-    sc1 = (res == a + b + c) ? 1.0 : 0.0;
+    sc1 = fail ? 0.0 : ((res == a + b + c) ? 1.0 : 0.0);
 
-    while (true) {
-        fscanf(fifo2_out, "%d", &res);
-        if (res < 0) {
-          fprintf(fifo2_in, "%d\n", c);
-          fflush(fifo2_in);
-        } else {
-          fprintf(fout, "%d\n", res);
-          fflush(fout);
+    fail = false;
+    while (true) {      
+      if(fscanf(fifo2_out, "%d", &res) == 0){
+        fail = true;
+        break;
+      }
+      if (res < 0) {
+        fprintf(fifo2_in, "%d\n", c);
+        fflush(fifo2_in);
+        if(errno == EPIPE){
+          fail = true;
           break;
         }
+      } else {
+        fprintf(fout, "%d\n", res);
+        fflush(fout);
+        break;
+      }
     }
-    sc2 = (res == a + b + c) ? 1.0 : 0.0;
+    sc2 = fail ? 0.0 : ((res == a + b + c) ? 1.0 : 0.0);
 
     printf("%.2lf %.2lf\n", sc1, sc2);
 
