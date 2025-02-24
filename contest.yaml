@@ -18,4 +18,14 @@ users:
   - username: "u2"
     password: "p2"
     ip: null
+  - username: "u3"
+    password: "p3"
+    ip: null
+  - username: "u4"
+    password: "p4"
+    ip: null
+  - username: "u5"
+    password: "p5"
+    ip: null
+
 token_mode: infinite
