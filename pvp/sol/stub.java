@@ -22,7 +22,7 @@ public class stub {
         String[] s = br.readLine().split(" ");
         int a = Integer.parseInt(s[0]);
         int b = Integer.parseInt(s[1]);
-        writer.println("" + communicationtwoways.add(a, b));
+        writer.println("" + pvp.add(a, b));
         writer.close();
         br.close();
     }
